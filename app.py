@@ -3,43 +3,8 @@ from sklearn.svm import SVR
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 
-# # The list where the marketshares are stored
-# market_share = []
-
-# # The list where the dates are stored
-# date = []
-
 # The number of movies to predict for test.csv
 limit = 10
-
-# Opening .csv file using csv module
-# with open('data.csv') as data:
-#     #reading the file as a dictreader so we can access the files faster
-#     data_csv = csv.DictReader(data)
-
-#     # to limit the number of data in order to reduce the process time
-#     # i= 0
-    
-#     # Going through ouw file row by row and chacking for a specific show
-#     for row in data_csv:
-        
-#         # Checking whether the name matches
-#         if row['Name of show'] == 'The Big Bang Theory':
-#             # for x axis we convert the date to a number
-#             # the number starts from 29/08/2016 and from number 1
-#             year = (int(row['Date'].split('-')[0]) - 2016) * 365
-#             month = (int(row['Date'].split('-')[1])) * 30
-#             day = int(row['Date'].split('-')[2])
-#             # start from 29/08/2016
-#             date.append( [year + month + day - 268])
-            
-#             market_share.append(float(row['Market Share_total']))
-            
-#             # breaker for the limit in case we want to 
-#             # add a specific number of data for training model
-#             # i += 1
-#             # if(i == 500):
-#             #     break
 
 # A dictionary which contains name of the show, date and market share
 data_dict = {}
@@ -69,21 +34,6 @@ error_threshhold_date = list(data_dict.values())[0]['date'][-1]
 # print(error_threshhold_date)
 error_threshhold_market_share = list(data_dict.values())[0]['market share'][-1]
 # print(error_threshhold_market_share)
-
-# Reading from test file
-# with open('test.csv') as test:
-#     test_csv = csv.DictReader(test)
-    
-#     # The dates for test file are stored in this list
-#     test_date = []
-    
-#     for row in test_csv:
-#         if row['Name of show'] == 'The Big Bang Theory':
-#             # Same thing for the date as above starting from 29/08/2016
-#             year = (int(row['Date'].split('-')[0]) - 2016) * 365
-#             month = (int(row['Date'].split('-')[1])) * 30
-#             day = int(row['Date'].split('-')[2])
-#             test_date.append( [year + month + day - 268])
 
 # A dictionary for the test file 
 # which has name of the show, date and predicted market share (which is what we want)
@@ -180,23 +130,4 @@ with open('results.csv', 'w') as result:
         j += 1
         if j >= limit:
             break
-
-
-# This part is for the single part which is kept in case it is needed to be used again
-
-# print('actual market share: ', error_threshhold_market_share)
-# print('svr_lin: ', predicted_market_share[0], ' - svr_poly: ', predicted_market_share[1],
-#     ' - svr_rbf: ', predicted_market_share[2], ' - lin_reg: ', predicted_market_share[3] )
-
-# print('error threshhold of svr_lin: ', abs(predicted_market_share[0] - error_threshhold_market_share) * 100 )
-# print('error threshhold of svr_poly: ', abs(predicted_market_share[1] - error_threshhold_market_share) * 100)
-# print('error threshhold of svr_rbf: ', abs(predicted_market_share[2] - error_threshhold_market_share) * 100)
-# print('error threshhold of lin_reg: ', abs(predicted_market_share[3] - error_threshhold_market_share) * 100)
-
-# print('error threshhold of svr_rbf: ', abs(predicted_market_share[0] - error_threshhold_market_share)[0] * 100, '%')
-# print('error threshhold of lin_reg: ', abs(predicted_market_share[1] - error_threshhold_market_share)[0] * 100, '%')
-
-
-
-# print('svr_rbf: ', predicted_market_share[0], ' - lin_reg: ', predicted_market_share[1] )
 
