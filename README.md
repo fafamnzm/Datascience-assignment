@@ -1,4 +1,4 @@
-# YapAiTek-assignment
+# Data science-assignment
       
       dependencies:
       # pip install -U scikit-learn
